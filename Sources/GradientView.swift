@@ -131,7 +131,7 @@ public class GradientView: UIView {
 	/// 	- to: the bottom color
 	/// 	- start: **optional** the y axis start point of the gradient
 	/// 	- end: **optional** the y axis end point of the gradient
-	convenience init(verticallyFrom from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
+	public convenience init(verticallyFrom from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
 		self.init()
 		setVerticalLinearGradient(from: from, to: to, start: start, end: end)
 		updateColors()
@@ -141,7 +141,7 @@ public class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- from: the color to fade out from
-	convenience init(verticallyFadingOutFrom from: UIColor) {
+	public convenience init(verticallyFadingOutFrom from: UIColor) {
 		self.init()
 		setVerticalLinearFadeOut(from: from)
 		updateColors()
@@ -151,7 +151,7 @@ public class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- to: the color to fade in to
-	convenience init(verticallyFadingInTo to: UIColor) {
+	public convenience init(verticallyFadingInTo to: UIColor) {
 		self.init()
 		setVerticalLinearFadeIn(to: to)
 		updateColors()
@@ -164,7 +164,7 @@ public class GradientView: UIView {
 	/// 	- to: the bottom color
 	/// 	- start: **optional** the x axis start point of the gradient
 	/// 	- end: **optional** the x axis end point of the gradient
-	convenience init(horizontallyFrom from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
+	public convenience init(horizontallyFrom from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
 		self.init()
 		setHorizontalLinearGradient(from: from, to: to, start: start, end: end)
 		updateColors()
@@ -174,7 +174,7 @@ public class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- from: the color to fade out from
-	convenience init(horizontallyFadingOutFrom from: UIColor) {
+	public convenience init(horizontallyFadingOutFrom from: UIColor) {
 		self.init()
 		setHorizontalLinearFadeOut(from: from)
 		updateColors()
@@ -184,7 +184,7 @@ public class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- from: the color to fade out from
-	convenience init(horizontallyFadingInTo to: UIColor) {
+	public convenience init(horizontallyFadingInTo to: UIColor) {
 		self.init()
 		setHorizontalLinearFadeIn(to: to)
 		updateColors()
@@ -198,7 +198,7 @@ public class GradientView: UIView {
 	/// 	- startPoint: the start point of the gradient
 	/// 	- endPoint: the end point of the gradient
 	///		- type: **optional** the type of gradient, defaults to `.axial`
-	convenience init(colors: [UIColor], locations: [CGFloat] = [], startPoint: CGPoint, endPoint: CGPoint, type: CAGradientLayerType = .axial) {
+	public convenience init(colors: [UIColor], locations: [CGFloat] = [], startPoint: CGPoint, endPoint: CGPoint, type: CAGradientLayerType = .axial) {
 		self.init()
 		setColors(colors, locations: locations, startPoint: startPoint, endPoint: endPoint, type: type)
 		updateColors()

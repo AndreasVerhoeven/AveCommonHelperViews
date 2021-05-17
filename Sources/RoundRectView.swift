@@ -55,7 +55,7 @@ public class RoundRectView: UIView {
 	///		- borderColor: **optional** the border color defaults to nil
 	///		- backgroundColor: **optional** the background color, defaults to nil
 	///		- clipsToBounds: **optional** if we should clip to the bounds, defaults to false
-	convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, clipsToBounds: Bool = false) {
+	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, clipsToBounds: Bool = false) {
 		self.init(frame:.zero)
 		self.cornerRadius = cornerRadius
 		self.cornerIsContinuous = cornerIsContinuous
