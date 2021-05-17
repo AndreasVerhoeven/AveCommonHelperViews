@@ -12,16 +12,20 @@ class ViewController: UIViewController {
 	let gradientView = GradientView(verticallyFadingOutFrom: .white)
 	let circleView = CircleView(size: 44, backgroundColor: .blue)
 
+	let fixedSizeView = FixedSizeView(size: CGSize(width: 10, height: 4), backgroundColor: .green)
+
 	@objc private func tapped(_ sender: Any) {
 		UIView.animate(withDuration: 0.5, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction]) {
 			if self.roundRectView.cornerRadius == 16 {
 				self.roundRectView.cornerRadius = 48
 				self.gradientView.setVerticalLinearFadeIn(to: .red)
 				self.circleView.fixedSize = 20
+				self.fixedSizeView.fixedSize = CGSize(width: 2, height: 8)
 			} else {
 				self.roundRectView.cornerRadius = 16
 				self.gradientView.setVerticalLinearFadeOut(from: .white)
 				self.circleView.fixedSize = 44
+				self.fixedSizeView.fixedSize = CGSize(width: 10, height: 4)
 			}
 		}
 	}
@@ -41,6 +45,9 @@ class ViewController: UIViewController {
 		circleView.translatesAutoresizingMaskIntoConstraints = false
 		roundRectView.addSubview(circleView)
 
+		fixedSizeView.translatesAutoresizingMaskIntoConstraints = false
+		circleView.addSubview(fixedSizeView)
+
 		NSLayoutConstraint.activate([
 			roundRectView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
 			roundRectView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
@@ -55,6 +62,9 @@ class ViewController: UIViewController {
 
 			circleView.centerYAnchor.constraint(equalTo: roundRectView.centerYAnchor),
 			circleView.centerXAnchor.constraint(equalTo: roundRectView.centerXAnchor),
+
+			fixedSizeView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
+			fixedSizeView.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
 		])
 
 	}
