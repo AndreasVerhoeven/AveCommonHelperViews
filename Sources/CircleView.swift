@@ -66,7 +66,7 @@ open class CircleView: UIView {
 		setup()
 	}
 
-	required init?(coder: NSCoder) {
+	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setup()
 	}
