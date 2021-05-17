@@ -10,6 +10,9 @@ import UIKit
 /// a view that optionally has an easily changeable fixed size
 open class FixedSizeView: UIView {
 
+	/// if set, we'll automatically perform layout in the super view for animated size changes
+	open var automaticallyLayoutSuperviewInAnimationBlocks = false
+
 	/// value to use if one of the dimensions should not be fixed
 	public static let notFixed = CGFloat(-1)
 
@@ -20,6 +23,7 @@ open class FixedSizeView: UIView {
 			guard fixedSize != oldValue else { return }
 			updateFixedSize()
 
+			guard automaticallyLayoutSuperviewInAnimationBlocks == true else { return }
 			superview?.setNeedsLayout()
 			if UIView.inheritedAnimationDuration > 0 {
 				superview?.layoutIfNeeded()
@@ -58,9 +62,13 @@ open class FixedSizeView: UIView {
 	///
 	/// - Parameters:
 	///		- size: the size of the view
+	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
 	///		- backgroundColor: **optional** the background color to set, defaults to nil
 	///		- clipsToBounds: **optional** clips to bounds, defaults to false
-	public convenience init(size: CGSize, backgroundColor: UIColor? = nil, clipsToBounds: Bool = false) {
+	public convenience init(size: CGSize,
+							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							backgroundColor: UIColor? = nil,
+							clipsToBounds: Bool = false) {
 		self.init()
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
