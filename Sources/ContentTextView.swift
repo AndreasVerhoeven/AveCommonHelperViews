@@ -34,7 +34,7 @@ open class ContentTextView: UITextView {
 	// WORKAROUND (iOS 13, *) UITextView gets its textColor from the inputControllers
 	// typingAttributes, which, if the last text is a link, is blue and not the color we
 	// did set.
-	override public var textColor: UIColor? {
+	override open var textColor: UIColor? {
 		set {
 			actualTextColor = newValue
 			super.textColor = newValue
@@ -44,7 +44,7 @@ open class ContentTextView: UITextView {
 		}
 	}
 
-	override public var typingAttributes: [NSAttributedString.Key : Any] {
+	override open var typingAttributes: [NSAttributedString.Key : Any] {
 		get {
 			var attributes = super.typingAttributes
 			actualTextColor.map { attributes[.foregroundColor] = $0  }
