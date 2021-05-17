@@ -8,7 +8,7 @@
 import UIKit
 
 /// A view that is a rounded rectangle
-public class RoundRectView: UIView {
+open class RoundRectView: UIView {
 
 	/// value used to signal that we always want circle corners
 	public static let alwaysVerticalCircleCorners = CGFloat(-1)

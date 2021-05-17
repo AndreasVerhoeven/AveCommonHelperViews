@@ -8,7 +8,7 @@
 import UIKit
 
 /// A View that wraps CGradientLayer
-public class GradientView: UIView {
+open class GradientView: UIView {
 
 	/// the colors for this gradient
 	public var colors = [UIColor]() {

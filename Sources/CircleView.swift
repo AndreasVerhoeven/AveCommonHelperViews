@@ -8,7 +8,7 @@
 import UIKit
 
 /// a view that is always a circle
-public class CircleView: UIView {
+open class CircleView: UIView {
 	/// Set this to a non nil value to force a width and height
 	public var fixedSize: CGFloat? = 0 {
 		didSet {

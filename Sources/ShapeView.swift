@@ -8,7 +8,7 @@
 import UIKit
 
 /// A view that wraps CAShapeLayer
-public class ShapeView: UIView {
+open class ShapeView: UIView {
 
 	public var path: UIBezierPath? {
 		didSet {

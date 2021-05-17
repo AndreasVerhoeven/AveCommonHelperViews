@@ -11,7 +11,7 @@ import UIKit
 ///  - doesn't allow scrolling by default
 ///	 - text selection is disabled by default
 ///	 - still allows link interaction
-public class ContentTextView: UITextView {
+open class ContentTextView: UITextView {
 
 	/// If yes, allows text selection, otherwise only links can be interacted with
 	public var isAllowingTextSelection = false
