@@ -72,6 +72,7 @@ open class FixedSizeView: UIView {
 		self.init()
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
+		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
 		fixedSize = size
 		updateFixedSize()
 	}
