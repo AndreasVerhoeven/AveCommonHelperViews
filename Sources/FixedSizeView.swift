@@ -74,7 +74,7 @@ open class FixedSizeView: UIView {
 		fixedWidthAnchor.isActive = (fixedSize != nil && fixedSize?.width != Self.notFixed)
 
 		fixedHeightAnchor.constant = fixedSize?.height ?? 0
-		fixedHeightAnchor.isActive = (fixedSize != nil && fixedSize?.width != Self.notFixed)
+		fixedHeightAnchor.isActive = (fixedSize != nil && fixedSize?.height != Self.notFixed)
 	}
 
 	private lazy var fixedWidthAnchor: NSLayoutConstraint = {
