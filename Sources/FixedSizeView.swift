@@ -77,6 +77,44 @@ open class FixedSizeView: UIView {
 		updateFixedSize()
 	}
 
+	/// Creates a view with a fixed width
+	///
+	/// - Parameters:
+	///		- width: the width of the view
+	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
+	///		- backgroundColor: **optional** the background color to set, defaults to nil
+	///		- clipsToBounds: **optional** clips to bounds, defaults to false
+	public convenience init(width: CGFloat,
+							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							backgroundColor: UIColor? = nil,
+							clipsToBounds: Bool = false) {
+		self.init()
+		self.backgroundColor = backgroundColor
+		self.clipsToBounds = clipsToBounds
+		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
+		fixedWidth = width
+		updateFixedSize()
+	}
+
+	/// Creates a view with a fixed height
+	///
+	/// - Parameters:
+	///		- height: the height of the view
+	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
+	///		- backgroundColor: **optional** the background color to set, defaults to nil
+	///		- clipsToBounds: **optional** clips to bounds, defaults to false
+	public convenience init(height: CGFloat,
+							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							backgroundColor: UIColor? = nil,
+							clipsToBounds: Bool = false) {
+		self.init()
+		self.backgroundColor = backgroundColor
+		self.clipsToBounds = clipsToBounds
+		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
+		fixedHeight = height
+		updateFixedSize()
+	}
+
 	// MARK: - Private
 	private func updateFixedSize() {
 		fixedWidthAnchor.constant = fixedSize?.width ?? 0
