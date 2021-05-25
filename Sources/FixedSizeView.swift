@@ -10,8 +10,14 @@ import UIKit
 /// a view that optionally has an easily changeable fixed size
 open class FixedSizeView: UIView {
 
-	/// if set, we'll automatically perform layout in the super view for animated size changes
-	open var automaticallyLayoutSuperviewInAnimationBlocks = false
+	public enum LayoutUpdateType {
+		case never
+		case always
+		case whenInAnimationBlock
+	}
+
+	/// if set, we'll automatically perform layout in the super view if needed size changes
+	open var automaticallyLayoutSuperviewOnChange = LayoutUpdateType.never
 
 	/// value to use if one of the dimensions should not be fixed
 	public static let notFixed = CGFloat(-1)
@@ -23,10 +29,20 @@ open class FixedSizeView: UIView {
 			guard fixedSize != oldValue else { return }
 			updateFixedSize()
 
-			guard automaticallyLayoutSuperviewInAnimationBlocks == true else { return }
-			superview?.setNeedsLayout()
-			if UIView.inheritedAnimationDuration > 0 {
-				superview?.layoutIfNeeded()
+			switch automaticallyLayoutSuperviewOnChange {
+				case .never:
+					break
+
+				case .always:
+					superview?.setNeedsLayout()
+					superview?.layoutIfNeeded()
+
+				case .whenInAnimationBlock:
+					superview?.setNeedsLayout()
+					if UIView.inheritedAnimationDuration > 0 {
+						superview?.layoutIfNeeded()
+					}
+
 			}
 		}
 	}
@@ -62,17 +78,17 @@ open class FixedSizeView: UIView {
 	///
 	/// - Parameters:
 	///		- size: the size of the view
-	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
+	///		- automaticallyLayoutSuperviewOnChange: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
 	///		- backgroundColor: **optional** the background color to set, defaults to nil
 	///		- clipsToBounds: **optional** clips to bounds, defaults to false
 	public convenience init(size: CGSize,
-							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							automaticallyLayoutSuperviewOnChange: LayoutUpdateType = .never,
 							backgroundColor: UIColor? = nil,
 							clipsToBounds: Bool = false) {
 		self.init()
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
-		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
+		self.automaticallyLayoutSuperviewOnChange = automaticallyLayoutSuperviewOnChange
 		fixedSize = size
 		updateFixedSize()
 	}
@@ -81,17 +97,17 @@ open class FixedSizeView: UIView {
 	///
 	/// - Parameters:
 	///		- width: the width of the view
-	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
+	///		- automaticallyLayoutSuperviewOnChange: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
 	///		- backgroundColor: **optional** the background color to set, defaults to nil
 	///		- clipsToBounds: **optional** clips to bounds, defaults to false
 	public convenience init(width: CGFloat,
-							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							automaticallyLayoutSuperviewOnChange: LayoutUpdateType = .never,
 							backgroundColor: UIColor? = nil,
 							clipsToBounds: Bool = false) {
 		self.init()
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
-		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
+		self.automaticallyLayoutSuperviewOnChange = automaticallyLayoutSuperviewOnChange
 		fixedWidth = width
 		updateFixedSize()
 	}
@@ -100,17 +116,17 @@ open class FixedSizeView: UIView {
 	///
 	/// - Parameters:
 	///		- height: the height of the view
-	///		- automaticallyLayoutSuperviewInAnimationBlocks: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
+	///		- automaticallyLayoutSuperviewOnChange: **optional** if set, we'll automatically layoutIfNeeded() the superview when fixedSize changes
 	///		- backgroundColor: **optional** the background color to set, defaults to nil
 	///		- clipsToBounds: **optional** clips to bounds, defaults to false
 	public convenience init(height: CGFloat,
-							automaticallyLayoutSuperviewInAnimationBlocks: Bool = false,
+							automaticallyLayoutSuperviewOnChange: LayoutUpdateType = .never,
 							backgroundColor: UIColor? = nil,
 							clipsToBounds: Bool = false) {
 		self.init()
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
-		self.automaticallyLayoutSuperviewInAnimationBlocks = automaticallyLayoutSuperviewInAnimationBlocks
+		self.automaticallyLayoutSuperviewOnChange = automaticallyLayoutSuperviewOnChange
 		fixedHeight = height
 		updateFixedSize()
 	}
