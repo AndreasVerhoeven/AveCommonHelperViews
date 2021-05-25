@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 	let gradientView = GradientView(verticallyFadingOutFrom: .white)
 	let circleView = CircleView(size: 44, backgroundColor: .blue)
 
-	let fixedSizeView = FixedSizeView(size: CGSize(width: 10, height: 4), automaticallyLayoutSuperviewInAnimationBlocks: true, backgroundColor: .green)
+	let fixedSizeView = FixedSizeView(size: CGSize(width: 10, height: 4), automaticallyLayoutSuperviewOnChange: .whenInAnimationBlock, backgroundColor: .green)
 
 	@objc private func tapped(_ sender: Any) {
 		UIView.animate(withDuration: 0.5, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction]) {
