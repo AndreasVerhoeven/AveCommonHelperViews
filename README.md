@@ -1,5 +1,5 @@
 # AveCommonHelperViews
-Commonly used helpers views for UIKit (ShapeView, GradientView, ContentTextView, RoundRectView, CircleView)
+Commonly used helpers views for UIKit (ShapeView, GradientView, ContentTextView, RoundRectView, CircleView, FixedSizeView)
 
 ## What?
 
@@ -71,4 +71,19 @@ Example:
 let circleView = CircleView(size: 44, backgroundColor: .red, clipsToBounds: true)
 
 let otherCircle = CircleView(size: 20, backgroundColor: .red)
+```
+
+## FixedSizeView
+
+A view that has constraints set up so it's always a fixedSize, fixedWidth or fixedHeight. The size can easily be changed using a parameter and size changes can force layout of the superview.
+
+This view is useful when you have a fixed and possibly dynamically changing fixed size: you don't need to keep track of the constraints.
+
+Example:
+```
+let view = FixedSizedView(width: 100, automaticallyLayoutSuperviewOnChange: .whenInAnimationBlock)
+view.fixedWidth = 200
+
+let otherView = FixedSizedView(size: CGSize(width: 100, height: 200))
+otherView.fixedHeight = 30
 ```
