@@ -16,6 +16,7 @@ A small `UITextView` subclass that disallows selecting text and scrolling, but d
 A view that wraps `CAGradientLayer`, supports dynamic `UIColor`s and **UIView-based-animations**.
 
 Common helpers are:
+
 	- `setVerticalLinearGradient()`
 	- `setHorizontalLinearGradient()`
 	- `setVerticalLinearFadeOut()`
@@ -25,6 +26,7 @@ Common helpers are:
 	- `setColors(_:, locations: startPoint: endPoint: type:)`
 	
 Each of those also have equivalent `init` methods:
+
 	- `init(verticallyFrom:to:)`
 	- `init(horizontallyFrom:to:)`
 	- `init(verticallyFadingOutFrom:)`
