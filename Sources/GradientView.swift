@@ -71,8 +71,8 @@ open class GradientView: UIView {
 	/// 	- end: **optional** the x axis start point of the gradient
 	public func setHorizontalLinearGradient(from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
 		self.colors = [from, to]
-		self.startPoint = CGPoint(x: 0, y: start)
-		self.endPoint = CGPoint(x: 0, y: end)
+		self.startPoint = CGPoint(x: start, y: 0)
+		self.endPoint = CGPoint(x: end, y: 0)
 		self.type = .axial
 	}
 
