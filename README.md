@@ -17,23 +17,23 @@ A view that wraps `CAGradientLayer`, supports dynamic `UIColor`s and **UIView-ba
 
 Common helpers are:
 
-	- `setVerticalLinearGradient()`
-	- `setHorizontalLinearGradient()`
-	- `setVerticalLinearFadeOut()`
-	- `setHorizontalLinearFadeOut()`
-	- `setVerticalLinearFadeIn()`
-	- `setHorizontalLinearFadeIn()`
-	- `setColors(_:, locations: startPoint: endPoint: type:)`
+- `setVerticalLinearGradient()`
+- `setHorizontalLinearGradient()`
+- `setVerticalLinearFadeOut()`
+- `setHorizontalLinearFadeOut()`
+- `setVerticalLinearFadeIn()`
+- `setHorizontalLinearFadeIn()`
+- `setColors(_:, locations: startPoint: endPoint: type:)`
 	
 Each of those also have equivalent `init` methods:
 
-	- `init(verticallyFrom:to:)`
-	- `init(horizontallyFrom:to:)`
-	- `init(verticallyFadingOutFrom:)`
-	- `init(verticallyFadingInTo:)`
-	- `init(horizontallyFadingOutFrom:)`
-	- `init(horizontallyFadingInTo:)`
-	- `init(colors: locations:startPoint:endPoint:type)`
+- `init(verticallyFrom:to:)`
+- `init(horizontallyFrom:to:)`
+- `init(verticallyFadingOutFrom:)`
+- `init(verticallyFadingInTo:)`
+- `init(horizontallyFadingOutFrom:)`
+- `init(horizontallyFadingInTo:)`
+- `init(colors: locations:startPoint:endPoint:type)`
 	
 Example:
 ```
