@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49739A2A266BD0A700C97655 /* CustomHighlightingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49739A29266BD0A700C97655 /* CustomHighlightingControl.swift */; };
 		49A6F79626508AAB002EB98D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F79526508AAB002EB98D /* AppDelegate.swift */; };
 		49A6F79826508AAB002EB98D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F79726508AAB002EB98D /* SceneDelegate.swift */; };
 		49A6F79A26508AAB002EB98D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F79926508AAB002EB98D /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49739A29266BD0A700C97655 /* CustomHighlightingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHighlightingControl.swift; sourceTree = "<group>"; };
 		49A6F79226508AAB002EB98D /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A6F79526508AAB002EB98D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49A6F79726508AAB002EB98D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				49A6F812265295ED002EB98D /* ShapeView.swift */,
 				49A6F81426529D75002EB98D /* CircleView.swift */,
 				49BE82F626531A45001CEC2A /* FixedSizeView.swift */,
+				49739A29266BD0A700C97655 /* CustomHighlightingControl.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -166,6 +169,7 @@
 				49A6F79626508AAB002EB98D /* AppDelegate.swift in Sources */,
 				49A6F81026528FDA002EB98D /* GradientView.swift in Sources */,
 				49A6F79826508AAB002EB98D /* SceneDelegate.swift in Sources */,
+				49739A2A266BD0A700C97655 /* CustomHighlightingControl.swift in Sources */,
 				49A6F80F26528FDA002EB98D /* ContentTextView.swift in Sources */,
 				49A6F81126528FDA002EB98D /* RoundRectView.swift in Sources */,
 				49A6F813265295ED002EB98D /* ShapeView.swift in Sources */,
