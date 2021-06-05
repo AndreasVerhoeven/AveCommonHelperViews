@@ -21,14 +21,14 @@ public class CustomHighlightingControl: UIControl {
 	/// how we should highlight
 	open var highlightingStyle: HighlightingStyle = .alwaysAnimate
 
-	public typealias HighlightingCallback = (CustomHighlightingControl) -> Void
+	public typealias HighlightingCallback = (Bool, CustomHighlightingControl) -> Void
 
 	/// called by updateHighlighting by default
 	open var highlightingCallback: HighlightingCallback?
 
 	/// Default fades out the view
 	open func updateHighlighting(_ shouldHighlight: Bool) {
-		highlightingCallback?(self)
+		highlightingCallback?(shouldHighlight, self)
 	}
 
 	open func setIsHighlighted(_ highlighted: Bool, animated: Bool) {
