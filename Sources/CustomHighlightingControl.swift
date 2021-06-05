@@ -10,7 +10,6 @@ import UIKit
 /// A UIControl subclass that does highlighting like UIButton does it
 public class CustomHighlightingControl: UIControl {
 
-
 	public enum HighlightingStyle {
 		/// doesn't highlight on initial touch down
 		case normal
