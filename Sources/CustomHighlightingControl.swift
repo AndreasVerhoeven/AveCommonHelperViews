@@ -81,12 +81,12 @@ open class CustomHighlightingControl: UIControl {
 	}
 
 	// MARK: - UIView
-	open override init(frame: CGRect) {
+	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
 	}
 
-	open required init?(coder: NSCoder) {
+	public required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setup()
 	}
