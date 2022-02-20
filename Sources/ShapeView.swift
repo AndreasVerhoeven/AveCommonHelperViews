@@ -108,3 +108,38 @@ open class ShapeView: UIView {
 		return super.action(for: layer, forKey: key)
 	}
 }
+
+extension ShapeView {
+	public convenience init(fillColor: UIColor?, strokeColor: UIColor?, lineWidth: CGFloat = 0) {
+		self.init(frame: .zero)
+		self.fillColor = fillColor
+		self.strokeColor = strokeColor
+		self.lineWidth = lineWidth
+	}
+	
+	public convenience init(fillColor: UIColor, fillRule: CAShapeLayerFillRule = .nonZero) {
+		self.init(frame: .zero)
+		self.fillColor = fillColor
+		self.fillRule = fillRule
+	}
+	
+	public convenience init(strokeColor: UIColor, start: CGFloat = 0, end: CGFloat = 1, lineWidth: CGFloat) {
+		self.init(frame: .zero)
+		self.strokeColor = strokeColor
+		self.fillColor = fillColor
+		self.fillRule = fillRule
+		self.lineWidth = lineWidth
+	}
+	
+	public convenience init(cutOutCircleWithDiameter diameter: CGFloat, fillColor: UIColor) {
+		self.init(frame: frame)
+		
+		let rect = CGRect(x: 0, y: 0, width: diameter, height: diameter)
+		let path = UIBezierPath(rect: rect)
+		path.append(UIBezierPath(roundedRect: rect, cornerRadius: diameter * 0.5))
+		
+		self.fillRule = .evenOdd
+		self.fillColor = fillColor
+		self.path = path
+	}
+}
