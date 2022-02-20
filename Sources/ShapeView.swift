@@ -112,23 +112,32 @@ open class ShapeView: UIView {
 extension ShapeView {
 	public convenience init(fillColor: UIColor?, strokeColor: UIColor?, lineWidth: CGFloat = 0) {
 		self.init(frame: .zero)
-		self.fillColor = fillColor
-		self.strokeColor = strokeColor
-		self.lineWidth = lineWidth
+		
+		_ = {
+			self.fillColor = fillColor
+			self.strokeColor = strokeColor
+			self.lineWidth = lineWidth
+		}()
 	}
 	
 	public convenience init(fillColor: UIColor, fillRule: CAShapeLayerFillRule = .nonZero) {
 		self.init(frame: .zero)
-		self.fillColor = fillColor
-		self.fillRule = fillRule
+		
+		_ = {
+			self.fillColor = fillColor
+			self.fillRule = fillRule
+		}()
 	}
 	
 	public convenience init(strokeColor: UIColor, start: CGFloat = 0, end: CGFloat = 1, lineWidth: CGFloat) {
 		self.init(frame: .zero)
-		self.strokeColor = strokeColor
-		self.fillColor = fillColor
-		self.fillRule = fillRule
-		self.lineWidth = lineWidth
+		
+		_ = {
+			self.strokeColor = strokeColor
+			self.fillColor = fillColor
+			self.fillRule = fillRule
+			self.lineWidth = lineWidth
+		}()
 	}
 	
 	public convenience init(cutOutCircleWithDiameter diameter: CGFloat, fillColor: UIColor) {
@@ -138,8 +147,10 @@ extension ShapeView {
 		let path = UIBezierPath(rect: rect)
 		path.append(UIBezierPath(roundedRect: rect, cornerRadius: diameter * 0.5))
 		
-		self.fillRule = .evenOdd
-		self.fillColor = fillColor
-		self.path = path
+		_ = {
+			self.fillRule = .evenOdd
+			self.fillColor = fillColor
+			self.path = path
+		}()
 	}
 }
