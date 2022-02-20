@@ -98,7 +98,7 @@ open class ShapeView: UIView {
 		if key == "path" || key == "strokeStart" || key == "strokeEnd" || key == "strokeColor" || key == "fillColor" {
 			if let animation = layer.action(forKey: "opacity") as? CABasicAnimation {
 				animation.keyPath = key
-				animation.fromValue = layer.value(forKey: key)
+				animation.fromValue = (layer.presentation() ?? layer).value(forKey: key)
 				animation.toValue = nil
 				animation.byValue = nil
 				return animation
