@@ -132,7 +132,7 @@ extension ShapeView {
 	}
 	
 	public convenience init(cutOutCircleWithDiameter diameter: CGFloat, fillColor: UIColor) {
-		self.init(frame: frame)
+		self.init(frame: .zero)
 		
 		let rect = CGRect(x: 0, y: 0, width: diameter, height: diameter)
 		let path = UIBezierPath(rect: rect)
