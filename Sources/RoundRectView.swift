@@ -136,7 +136,7 @@ public extension CACornerMask {
 	static let bottomLeft = CACornerMask.layerMinXMaxYCorner
 	static let bottomRight = CACornerMask.layerMaxXMaxYCorner
 	
-	static func all(without: CACornerMask) -> Self {
-		return CACornerMask.all.subtracting(without)
+	static func except(_ item: CACornerMask) -> Self {
+		return CACornerMask.all.subtracting(item)
 	}
 }
