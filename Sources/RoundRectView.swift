@@ -126,6 +126,7 @@ open class RoundRectView: UIView {
 
 public extension CACornerMask {
 	static let all: CACornerMask = [.topLeft, .topRight, .bottomLeft, .bottomRight]
+	static let none: CACornerMask = []
 	static let top: CACornerMask = [.topLeft, .topRight]
 	static let bottom: CACornerMask = [.bottomLeft, .bottomRight]
 	static let left: CACornerMask = [.topLeft, .bottomLeft]
