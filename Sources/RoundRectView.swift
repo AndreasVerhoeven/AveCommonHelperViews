@@ -125,6 +125,7 @@ open class RoundRectView: UIView {
 }
 
 public extension CACornerMask {
+	static let all: CACornerMask = [.topLeft, .topRight, .bottomLeft, .bottomRight]
 	static let top: CACornerMask = [.topLeft, .topRight]
 	static let bottom: CACornerMask = [.bottomLeft, .bottomRight]
 	static let left: CACornerMask = [.topLeft, .bottomLeft]
@@ -136,8 +137,6 @@ public extension CACornerMask {
 	static let bottomRight = CACornerMask.layerMaxXMaxYCorner
 	
 	static func all(without: CACornerMask) -> Self {
-		var items: CACornerMask = [.topLeft, .topRight, .bottomLeft, .bottomRight]
-		items.remove(without)
-		return items
+		return CACornerMask.all.subtracting(without)
 	}
 }
