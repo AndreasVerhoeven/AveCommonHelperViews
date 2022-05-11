@@ -54,13 +54,15 @@ open class RoundRectView: UIView {
 	///		- borderWidth: **optional** the width of the border, defaults to 0
 	///		- borderColor: **optional** the border color defaults to nil
 	///		- backgroundColor: **optional** the background color, defaults to nil
+	///		- maskedCorners: ** optional** the corners to mask, defaults to `.all`
 	///		- clipsToBounds: **optional** if we should clip to the bounds, defaults to false
-	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, clipsToBounds: Bool = false) {
+	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, maskedCorners: CACornerMask = .all, clipsToBounds: Bool = false) {
 		self.init(frame:.zero)
 		self.cornerRadius = cornerRadius
 		self.cornerIsContinuous = cornerIsContinuous
 		self.borderWidth = borderWidth
 		self.borderColor = borderColor
+		self.maskedCorners = maskedCorners
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
 		updateBorderColor()
