@@ -66,7 +66,6 @@ class ViewController: UIViewController {
 			fixedSizeView.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
 			fixedSizeView.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
 		])
-
 	}
 }
 

@@ -18,6 +18,8 @@
 		49A6F81126528FDA002EB98D /* RoundRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F80E26528FDA002EB98D /* RoundRectView.swift */; };
 		49A6F813265295ED002EB98D /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F812265295ED002EB98D /* ShapeView.swift */; };
 		49A6F81526529D75002EB98D /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A6F81426529D75002EB98D /* CircleView.swift */; };
+		49A7883A286AFB5400CE9CF2 /* UIResponder+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A78839286AFB5400CE9CF2 /* UIResponder+Helper.swift */; };
+		49A7883C286AFCF500CE9CF2 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7883B286AFCF500CE9CF2 /* UIView+Helper.swift */; };
 		49BE82F726531A45001CEC2A /* FixedSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BE82F626531A45001CEC2A /* FixedSizeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		49A6F80E26528FDA002EB98D /* RoundRectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundRectView.swift; sourceTree = "<group>"; };
 		49A6F812265295ED002EB98D /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
 		49A6F81426529D75002EB98D /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		49A78839286AFB5400CE9CF2 /* UIResponder+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Helper.swift"; sourceTree = "<group>"; };
+		49A7883B286AFCF500CE9CF2 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
 		49BE82F626531A45001CEC2A /* FixedSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedSizeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +93,8 @@
 				49A6F81426529D75002EB98D /* CircleView.swift */,
 				49BE82F626531A45001CEC2A /* FixedSizeView.swift */,
 				49739A29266BD0A700C97655 /* CustomHighlightingControl.swift */,
+				49A78839286AFB5400CE9CF2 /* UIResponder+Helper.swift */,
+				49A7883B286AFCF500CE9CF2 /* UIView+Helper.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -166,12 +172,14 @@
 				49BE82F726531A45001CEC2A /* FixedSizeView.swift in Sources */,
 				49A6F81526529D75002EB98D /* CircleView.swift in Sources */,
 				49A6F79A26508AAB002EB98D /* ViewController.swift in Sources */,
+				49A7883A286AFB5400CE9CF2 /* UIResponder+Helper.swift in Sources */,
 				49A6F79626508AAB002EB98D /* AppDelegate.swift in Sources */,
 				49A6F81026528FDA002EB98D /* GradientView.swift in Sources */,
 				49A6F79826508AAB002EB98D /* SceneDelegate.swift in Sources */,
 				49739A2A266BD0A700C97655 /* CustomHighlightingControl.swift in Sources */,
 				49A6F80F26528FDA002EB98D /* ContentTextView.swift in Sources */,
 				49A6F81126528FDA002EB98D /* RoundRectView.swift in Sources */,
+				49A7883C286AFCF500CE9CF2 /* UIView+Helper.swift in Sources */,
 				49A6F813265295ED002EB98D /* ShapeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
