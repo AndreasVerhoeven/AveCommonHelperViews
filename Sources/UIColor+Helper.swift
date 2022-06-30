@@ -22,11 +22,17 @@ public extension UIColor {
 	}
 	
 	/// Returns this color, but with the interface style reversed: dark becomes the light color and vice versa
-	func withInterfaceStyleReversed() -> UIColor {
+	var interfaceStyleInverted: UIColor {
 		withDynamicProvider { color, traitCollection -> UIColor in
-			let interfaceStyle = traitCollection.userInterfaceStyle.reversed()
+			let interfaceStyle = traitCollection.userInterfaceStyle.inverted
 			let newTraits = UITraitCollection(traitsFrom: [traitCollection, UITraitCollection(userInterfaceStyle: interfaceStyle)])
 			return color.resolvedColor(with: newTraits)
 		}
 	}
+	
+	/// Returns the dark variant of this color
+	var alwaysDark: UIColor { withInterfaceStyle(.dark) }
+	
+	/// Returns the light variant of this color
+	var alwaysLight: UIColor { withInterfaceStyle(.light) }
 }

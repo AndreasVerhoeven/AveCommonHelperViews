@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIUserInterfaceStyle {
 	/// Returns an interface style that is reversed: (light, unspecified, unknown) becomes dark, dark becomes light
-	func reversed() -> UIUserInterfaceStyle {
+	var inverted: UIUserInterfaceStyle {
 		switch self {
 			case .unspecified: return .dark
 			case .light: return .dark
