@@ -15,33 +15,33 @@ open class RoundRectView: UIView {
 
 	/// the corner radius we want. Set to `RoundRectView.alwaysVerticalCircleCorners`
 	/// to make the corners always form a vertical circle
-	public var cornerRadius: CGFloat = 0 {
+	open var cornerRadius: CGFloat = 0 {
 		didSet {
 			updateCornerRadius()
 		}
 	}
 
 	/// the border width
-	public var borderWidth: CGFloat {
+	open var borderWidth: CGFloat {
 		get {layer.borderWidth}
 		set {layer.borderWidth = newValue}
 	}
 
 	/// true if we want smooth continuous corners
-	var cornerIsContinuous: Bool {
+	open var cornerIsContinuous: Bool {
 		get {layer.cornerCurve == .continuous}
 		set {layer.cornerCurve = newValue ? .continuous : .circular}
 	}
 
 	// the border color
-	public var borderColor: UIColor? {
+	open var borderColor: UIColor? {
 		didSet {
 			updateBorderColor()
 		}
 	}
 
 	/// the corners that will be shown
-	public var maskedCorners: CACornerMask {
+	open var maskedCorners: CACornerMask {
 		get {layer.maskedCorners}
 		set {layer.maskedCorners = newValue}
 	}
@@ -87,21 +87,21 @@ open class RoundRectView: UIView {
 	}
 
 	// MARK: - UIView
-	override public func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 		if cornerRadius == Self.alwaysVerticalCircleCorners {
 			updateCornerRadius()
 		}
 	}
 
-	override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+	override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		updateBorderColor()
 	}
 
 	// MARK: CALayerDelegate
 
-	override public func action(for layer: CALayer, forKey key: String) -> CAAction? {
+	override open func action(for layer: CALayer, forKey key: String) -> CAAction? {
 		if key == "borderColor" || key == "borderWidth" {
 			if let animation = layer.action(forKey: "opacity") as? CABasicAnimation {
 				animation.keyPath = key

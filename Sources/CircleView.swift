@@ -10,7 +10,7 @@ import UIKit
 /// a view that is always a circle
 open class CircleView: UIView {
 	/// Set this to a non nil value to force a width and height
-	public var fixedSize: CGFloat? = 0 {
+	open var fixedSize: CGFloat? = 0 {
 		didSet {
 			guard fixedSize != oldValue else { return }
 			updateFixedSize()
@@ -55,7 +55,7 @@ open class CircleView: UIView {
 	}()
 	
 	// MARK: - UIView
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 
 		super.layoutSubviews()
 		layer.cornerRadius = bounds.height * 0.5

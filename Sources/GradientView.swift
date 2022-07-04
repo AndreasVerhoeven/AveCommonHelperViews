@@ -11,39 +11,39 @@ import UIKit
 open class GradientView: UIView {
 
 	/// the colors for this gradient
-	public var colors = [UIColor]() {
+	open var colors = [UIColor]() {
 		didSet {
 			updateColors()
 		}
 	}
 
 	/// the stops in the gradient
-	public var locations = [CGFloat]() {
+	open var locations = [CGFloat]() {
 		didSet {
 			gradientLayer.locations = locations.isEmpty ? nil : locations.map { $0 as NSNumber }
 		}
 	}
 
 	/// the type of gradient
-	public var type: CAGradientLayerType {
+	open var type: CAGradientLayerType {
 		get { gradientLayer.type }
 		set { gradientLayer.type = newValue }
 	}
 
 	/// the start point of the gradient
-	public var startPoint: CGPoint {
+	open var startPoint: CGPoint {
 		get { gradientLayer.startPoint }
 		set { gradientLayer.startPoint = newValue }
 	}
 
 	/// the end point of the gradient
-	public var endPoint: CGPoint {
+	open var endPoint: CGPoint {
 		get { gradientLayer.endPoint }
 		set { gradientLayer.endPoint = newValue }
 	}
 
 	/// the gradient layer for this view
-	public var gradientLayer: CAGradientLayer {
+	open var gradientLayer: CAGradientLayer {
 		return layer as! CAGradientLayer
 	}
 
@@ -55,7 +55,7 @@ open class GradientView: UIView {
 	/// 	- to: the bottom color
 	/// 	- start: **optional** the y axis start point of the gradient
 	/// 	- end: **optional** the y axis end point of the gradient
-	public func setVerticalLinearGradient(from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
+	open func setVerticalLinearGradient(from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
 		self.colors = [from, to]
 		self.startPoint = CGPoint(x: 0, y: start)
 		self.endPoint = CGPoint(x: 0, y: end)
@@ -69,7 +69,7 @@ open class GradientView: UIView {
 	/// 	- to: the bottom color
 	/// 	- start: **optional** the x axis start point of the gradient
 	/// 	- end: **optional** the x axis start point of the gradient
-	public func setHorizontalLinearGradient(from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
+	open func setHorizontalLinearGradient(from: UIColor, to: UIColor, start: CGFloat = 0, end: CGFloat = 1) {
 		self.colors = [from, to]
 		self.startPoint = CGPoint(x: start, y: 0)
 		self.endPoint = CGPoint(x: end, y: 0)
@@ -80,7 +80,7 @@ open class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- from: the color to fade out from
-	public func setVerticalLinearFadeOut(from: UIColor) {
+	open func setVerticalLinearFadeOut(from: UIColor) {
 		setVerticalLinearGradient(from: from, to: from.withAlphaComponent(0))
 	}
 
@@ -88,7 +88,7 @@ open class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- from: the color to fade out from
-	public func setHorizontalLinearFadeOut(from: UIColor) {
+	open func setHorizontalLinearFadeOut(from: UIColor) {
 		setHorizontalLinearGradient(from: from, to: from.withAlphaComponent(0))
 	}
 
@@ -96,7 +96,7 @@ open class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- to: the color to fade in from
-	public func setVerticalLinearFadeIn(to: UIColor) {
+	open func setVerticalLinearFadeIn(to: UIColor) {
 		setVerticalLinearGradient(from: to.withAlphaComponent(0), to: to)
 	}
 
@@ -104,7 +104,7 @@ open class GradientView: UIView {
 	///
 	/// - Parameters:
 	///		- to: the color to fade in from
-	public func setHorizontalLinearFadeIn(to: UIColor) {
+	open func setHorizontalLinearFadeIn(to: UIColor) {
 		setHorizontalLinearGradient(from: to.withAlphaComponent(0), to: to)
 	}
 
@@ -116,7 +116,7 @@ open class GradientView: UIView {
 	/// 	- startPoint: the start point of the gradient
 	/// 	- endPoint: the end point of the gradient
 	///		- type: **optional** the type of gradient, defaults to `.axial`
-	public func setColors(_ colors: [UIColor], locations: [CGFloat] = [], startPoint: CGPoint, endPoint: CGPoint, type: CAGradientLayerType = .axial) {
+	open func setColors(_ colors: [UIColor], locations: [CGFloat] = [], startPoint: CGPoint, endPoint: CGPoint, type: CAGradientLayerType = .axial) {
 		self.colors = colors
 		self.locations = locations
 		self.startPoint = startPoint
@@ -211,18 +211,18 @@ open class GradientView: UIView {
 	}
 
 	// MARK: - UIView
-	override public class var layerClass: AnyClass {
+	override open class var layerClass: AnyClass {
 		return CAGradientLayer.self
 	}
 
-	override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+	override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		updateColors()
 	}
 
 	// MARK: - CALayerDelegate
 
-	override public func action(for layer: CALayer, forKey key: String) -> CAAction? {
+	override open func action(for layer: CALayer, forKey key: String) -> CAAction? {
 		if key == "colors" || key == "locations" || key == "startPoint" || key == "endPoint" || key == "type" {
 			if let animation = layer.action(forKey: "opacity") as? CABasicAnimation {
 				animation.keyPath = key

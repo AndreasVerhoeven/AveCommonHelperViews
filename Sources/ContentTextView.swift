@@ -14,7 +14,7 @@ import UIKit
 open class ContentTextView: UITextView {
 
 	/// If yes, allows text selection, otherwise only links can be interacted with
-	public var isAllowingTextSelection = false
+	open var isAllowingTextSelection = false
 
 	/// the actual text color that was set programmatically
 	private var actualTextColor: UIColor?
@@ -56,7 +56,7 @@ open class ContentTextView: UITextView {
 	}
 
 	// MARK: - UIView
-	override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+	override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 		guard isAllowingTextSelection == false, isScrollEnabled == false else { return super.hitTest(point, with: event) }
 
 		let fixedPoint = CGPoint(x: point.x - textContainerInset.left, y: point.y - textContainerInset.top)
@@ -68,11 +68,11 @@ open class ContentTextView: UITextView {
 	}
 
 	// MARK: - UIResponder
-	override public var canBecomeFirstResponder: Bool {
+	override open var canBecomeFirstResponder: Bool {
 		return isAllowingTextSelection && super.canBecomeFirstResponder
 	}
 
-	override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+	override open func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		return isAllowingTextSelection && super.canPerformAction(action, withSender: sender)
 	}
 }

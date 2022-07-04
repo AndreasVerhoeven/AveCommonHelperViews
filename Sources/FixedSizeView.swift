@@ -49,7 +49,7 @@ open class FixedSizeView: UIView {
 
 
 	/// Convenience helper for fixedSize.height
-	public var fixedHeight: CGFloat? {
+	open var fixedHeight: CGFloat? {
 		get { fixedSize?.height }
 		set {
 			let newSize = CGSize(width: fixedWidth ?? Self.notFixed, height: newValue ?? Self.notFixed)
@@ -62,7 +62,7 @@ open class FixedSizeView: UIView {
 	}
 
 	/// Convenience helper for fixedSize.width
-	public var fixedWidth: CGFloat? {
+	open var fixedWidth: CGFloat? {
 		get { fixedSize?.width }
 		set {
 			let newSize = CGSize(width: newValue ?? Self.notFixed, height: fixedHeight ?? Self.notFixed)
