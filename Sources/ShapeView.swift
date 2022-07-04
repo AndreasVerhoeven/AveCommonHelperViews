@@ -84,17 +84,17 @@ open class ShapeView: UIView {
 	}
 
 	// MARK: - UIView
-	override public class var layerClass: AnyClass {
+	override open class var layerClass: AnyClass {
 		return CAShapeLayer.self
 	}
 
-	override public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+	override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		updateColors()
 	}
 
 	// MARK: - CALayerDelegate
-	override public func action(for layer: CALayer, forKey key: String) -> CAAction? {
+	override open func action(for layer: CALayer, forKey key: String) -> CAAction? {
 		if key == "path" || key == "strokeStart" || key == "strokeEnd" || key == "strokeColor" || key == "fillColor" {
 			if let animation = layer.action(forKey: "opacity") as? CABasicAnimation {
 				animation.keyPath = key
