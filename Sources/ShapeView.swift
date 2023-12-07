@@ -79,8 +79,10 @@ open class ShapeView: UIView {
 
 	// MARK: - Private
 	private func updateColors() {
-		shapeLayer.fillColor = fillColor?.cgColor
-		shapeLayer.strokeColor = strokeColor?.cgColor
+		traitCollection.performAsCurrent {
+			shapeLayer.fillColor = fillColor?.cgColor
+			shapeLayer.strokeColor = strokeColor?.cgColor
+		}
 	}
 
 	// MARK: - UIView

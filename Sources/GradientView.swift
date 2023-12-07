@@ -207,7 +207,9 @@ open class GradientView: UIView {
 	// MARK: - private
 	private func updateColors() {
 		let traitCollection = self.traitCollection
-		gradientLayer.colors = colors.map { $0.resolvedColor(with: traitCollection).cgColor }
+		traitCollection.performAsCurrent {
+			gradientLayer.colors = colors.map { $0.resolvedColor(with: traitCollection).cgColor }
+		}
 	}
 
 	// MARK: - UIView
