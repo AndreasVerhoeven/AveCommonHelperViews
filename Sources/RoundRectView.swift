@@ -100,7 +100,7 @@ open class RoundRectView: UIView {
 
 	/// this is equivalent to `maskedCorners`, except that it follows the `effectiveUserInterfaceLayoutDirection`.
 	/// Setting this will override the `maskedCorners` value.
-	open var directionalCornerMask: DirectionalCornerMask = .all {
+	open var directionalMaskedCorners: DirectionalCornerMask = .all {
 		didSet {
 			isUsingDirectionalCornerMask = true
 			updateMaskedCorners()
@@ -171,15 +171,15 @@ open class RoundRectView: UIView {
 	///		- borderWidth: **optional** the width of the border, defaults to 0
 	///		- borderColor: **optional** the border color defaults to nil
 	///		- backgroundColor: **optional** the background color, defaults to nil
-	///		- corners: the corners to use, follows the layout direction
+	///		- directionalMaskedCorners: the directional corners to mask, follows the layout direction
 	///		- clipsToBounds: **optional** if we should clip to the bounds, defaults to false
-	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, directionalCornerMask: DirectionalCornerMask, clipsToBounds: Bool = false) {
+	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, directionalMaskedCorners: DirectionalCornerMask, clipsToBounds: Bool = false) {
 		self.init(frame:.zero)
 		self.cornerRadius = cornerRadius
 		self.cornerIsContinuous = cornerIsContinuous
 		self.borderWidth = borderWidth
 		self.borderColor = borderColor
-		self.directionalCornerMask = directionalCornerMask
+		self.directionalMaskedCorners = directionalMaskedCorners
 		self.backgroundColor = backgroundColor
 		self.clipsToBounds = clipsToBounds
 
@@ -198,12 +198,12 @@ open class RoundRectView: UIView {
 
 	private func updateMaskedCorners() {
 		if isUsingDirectionalCornerMask == true {
-			let maskedCorners = directionalCornerMask.caCornerMask(for: effectiveUserInterfaceLayoutDirection)
+			let maskedCorners = directionalMaskedCorners.caCornerMask(for: effectiveUserInterfaceLayoutDirection)
 			if maskedCorners != layer.maskedCorners {
 				layer.maskedCorners = maskedCorners
 			}
 		} else {
-			directionalCornerMask = DirectionalCornerMask(from: layer.maskedCorners, layoutDirection: effectiveUserInterfaceLayoutDirection)
+			directionalMaskedCorners = DirectionalCornerMask(from: layer.maskedCorners, layoutDirection: effectiveUserInterfaceLayoutDirection)
 		}
 	}
 
