@@ -107,6 +107,19 @@ open class RoundRectView: UIView {
 		}
 	}
 
+	/// the corners that will be shown - setting this will override
+	/// any value that was set for `directionalCornerMask`/
+	open var maskedCorners: CACornerMask {
+		get {
+			layer.maskedCorners
+		}
+		set {
+			isUsingDirectionalCornerMask = false
+			layer.maskedCorners = newValue
+			updateMaskedCorners()
+		}
+	}
+
 	/// the border width
 	open var borderWidth: CGFloat {
 		get {layer.borderWidth}
@@ -123,19 +136,6 @@ open class RoundRectView: UIView {
 	open var borderColor: UIColor? {
 		didSet {
 			updateBorderColor()
-		}
-	}
-
-	/// the corners that will be shown - setting this will override
-	/// any value that was set for `directionalCornerMask`/
-	open var maskedCorners: CACornerMask {
-		get {
-			layer.maskedCorners
-		}
-		set {
-			isUsingDirectionalCornerMask = false
-			layer.maskedCorners = newValue
-			updateMaskedCorners()
 		}
 	}
 
