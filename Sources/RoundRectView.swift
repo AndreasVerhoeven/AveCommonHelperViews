@@ -13,11 +13,97 @@ open class RoundRectView: UIView {
 	/// value used to signal that we always want circle corners
 	public static let alwaysVerticalCircleCorners = CGFloat(-1)
 
+	/// This is equivalent to `CACornerMask`, except that they follow the layout direction
+	/// properly. You resolve to a `CACornerMask` using the `caCornerMask(for:)` method,
+	/// where you give it a layout direction.
+	public struct DirectionalCornerMask: RawRepresentable, OptionSet {
+		public var rawValue: Int
+
+		public init(rawValue: Int) {
+			self.rawValue = rawValue
+		}
+
+		// dont show any corners
+		public static let none = Self(rawValue: 1 << 0)
+
+		/// the corners to show
+		public static let topLeading = Self(rawValue: 1 << 1)
+		public static let topTrailing = Self(rawValue: 1 << 2)
+		public static let bottomLeading = Self(rawValue: 1 << 3)
+		public static let bottomTrailing = Self(rawValue: 1 << 4)
+
+		// helpers
+		public static let all: Self = [.topLeading, .topTrailing, .bottomLeading, .bottomTrailing]
+		public static let bottom: Self = [.bottomLeading, .bottomTrailing]
+		public static let top: Self = [.topLeading, .topTrailing]
+		public static let leading: Self = [.topLeading, .bottomLeading]
+		public static let trailing: Self = [.topTrailing, .bottomTrailing]
+
+		/// shows all corners except one
+		public static func except(_ item: Self) -> Self {
+			return Self.all.subtracting(item)
+		}
+
+		/// creates a DirectionalCornerMask from a `CACornerMask` and a `layoutDirection`
+		public init(from caCornerMask: CACornerMask, layoutDirection: UIUserInterfaceLayoutDirection) {
+			var mask: Self = []
+
+			switch layoutDirection {
+				case .rightToLeft:
+					if caCornerMask.contains(.layerMaxXMinYCorner) == true { mask.insert(.topLeading) }
+					if caCornerMask.contains(.layerMinXMinYCorner) == true { mask.insert(.topTrailing) }
+					if caCornerMask.contains(.layerMaxXMaxYCorner) == true { mask.insert(.bottomLeading) }
+					if caCornerMask.contains(.layerMinXMaxYCorner) == true { mask.insert(.bottomTrailing) }
+
+				case .leftToRight:
+					fallthrough
+				@unknown default:
+					if caCornerMask.contains(.layerMaxXMinYCorner) == true { mask.insert(.topTrailing) }
+					if caCornerMask.contains(.layerMinXMinYCorner) == true { mask.insert(.topLeading) }
+					if caCornerMask.contains(.layerMaxXMaxYCorner) == true { mask.insert(.bottomTrailing) }
+					if caCornerMask.contains(.layerMinXMaxYCorner) == true { mask.insert(.bottomLeading) }
+			}
+
+			self = mask
+		}
+
+		/// Creates a (non directional) CACornerMask for a given `layoutDirection`
+		public func caCornerMask(for layoutDirection: UIUserInterfaceLayoutDirection) -> CACornerMask {
+			var newMaskedCorners: CACornerMask = []
+			switch layoutDirection {
+				case .rightToLeft:
+					if contains(.topLeading) == true { newMaskedCorners.insert(.layerMaxXMinYCorner) }
+					if contains(.topTrailing) == true { newMaskedCorners.insert(.layerMinXMinYCorner) }
+					if contains(.bottomLeading) == true { newMaskedCorners.insert(.layerMaxXMaxYCorner) }
+					if contains(.bottomTrailing) == true { newMaskedCorners.insert(.layerMinXMaxYCorner) }
+
+				case .leftToRight:
+					fallthrough
+				@unknown default:
+					if contains(.topLeading) == true { newMaskedCorners.insert(.layerMinXMinYCorner) }
+					if contains(.topTrailing) == true { newMaskedCorners.insert(.layerMaxXMinYCorner) }
+					if contains(.bottomLeading) == true { newMaskedCorners.insert(.layerMinXMaxYCorner) }
+					if contains(.bottomTrailing) == true { newMaskedCorners.insert(.layerMaxXMaxYCorner) }
+			}
+
+			return newMaskedCorners
+		}
+	}
+
 	/// the corner radius we want. Set to `RoundRectView.alwaysVerticalCircleCorners`
 	/// to make the corners always form a vertical circle
 	open var cornerRadius: CGFloat = 0 {
 		didSet {
 			updateCornerRadius()
+		}
+	}
+
+	/// this is equivalent to `maskedCorners`, except that it follows the `effectiveUserInterfaceLayoutDirection`.
+	/// Setting this will override the `maskedCorners` value.
+	open var directionalCornerMask: DirectionalCornerMask = .all {
+		didSet {
+			isUsingDirectionalCornerMask = true
+			updateMaskedCorners()
 		}
 	}
 
@@ -40,10 +126,17 @@ open class RoundRectView: UIView {
 		}
 	}
 
-	/// the corners that will be shown
+	/// the corners that will be shown - setting this will override
+	/// any value that was set for `directionalCornerMask`/
 	open var maskedCorners: CACornerMask {
-		get {layer.maskedCorners}
-		set {layer.maskedCorners = newValue}
+		get {
+			layer.maskedCorners
+		}
+		set {
+			isUsingDirectionalCornerMask = false
+			layer.maskedCorners = newValue
+			updateMaskedCorners()
+		}
 	}
 
 	/// Creates a new RoundRectView
@@ -67,12 +160,53 @@ open class RoundRectView: UIView {
 		self.clipsToBounds = clipsToBounds
 		updateBorderColor()
 		updateCornerRadius()
+		updateMaskedCorners()
+	}
+
+	/// Creates a new RoundRectView
+	///
+	/// - Parameters:
+	///		- cornerRadius: **optional** the corner radius to use, defaults to 0
+	///		- cornerIsContinuous: **optional** true if we want smooth corners, defaults to false
+	///		- borderWidth: **optional** the width of the border, defaults to 0
+	///		- borderColor: **optional** the border color defaults to nil
+	///		- backgroundColor: **optional** the background color, defaults to nil
+	///		- corners: the corners to use, follows the layout direction
+	///		- clipsToBounds: **optional** if we should clip to the bounds, defaults to false
+	public convenience init(cornerRadius: CGFloat = 0, cornerIsContinuous: Bool = false, borderWidth: CGFloat = 0, borderColor: UIColor? = nil, backgroundColor: UIColor? = nil, directionalCornerMask: DirectionalCornerMask, clipsToBounds: Bool = false) {
+		self.init(frame:.zero)
+		self.cornerRadius = cornerRadius
+		self.cornerIsContinuous = cornerIsContinuous
+		self.borderWidth = borderWidth
+		self.borderColor = borderColor
+		self.directionalCornerMask = directionalCornerMask
+		self.backgroundColor = backgroundColor
+		self.clipsToBounds = clipsToBounds
+
+		isUsingDirectionalCornerMask = true
+		updateBorderColor()
+		updateCornerRadius()
+		updateMaskedCorners()
 	}
 
 	// MARK: - Privates
+	private var isUsingDirectionalCornerMask = false
+
 	private func updateBorderColor() {
 		layer.borderColor = borderColor?.resolvedColor(with: traitCollection).cgColor
 	}
+
+	private func updateMaskedCorners() {
+		if isUsingDirectionalCornerMask == true {
+			let maskedCorners = directionalCornerMask.caCornerMask(for: effectiveUserInterfaceLayoutDirection)
+			if maskedCorners != layer.maskedCorners {
+				layer.maskedCorners = maskedCorners
+			}
+		} else {
+			directionalCornerMask = DirectionalCornerMask(from: layer.maskedCorners, layoutDirection: effectiveUserInterfaceLayoutDirection)
+		}
+	}
+
 	private func updateCornerRadius() {
 		if cornerRadius == Self.alwaysVerticalCircleCorners {
 			layer.cornerRadius = bounds.height * 0.5
@@ -97,6 +231,7 @@ open class RoundRectView: UIView {
 	override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		updateBorderColor()
+		updateMaskedCorners()
 	}
 
 	// MARK: CALayerDelegate
